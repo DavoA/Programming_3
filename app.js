@@ -1,19 +1,53 @@
 var express = require('express');
-var path = require('path');
 var app = express();
 
-// Define the port to run on
-app.set('port', process.env.PORT || 3000);
+var server = require('http').Server(app);
 
-app.use(express.static(path.join(__dirname, 'public')));
+var io = require('socket.io')(server);
 
-// Listen for requests
-var server = app.listen(app.get('port'), function() {
-  var port = server.address().port;
-  console.log('Magic happens on port ' + port);
+app.use(express.static("./public"));
+
+app.get('/', function (req, res) {
+  res.redirect('index.html');
 });
 
+server.listen(3000);
 
+var matrix = require("./Modules/matrix");
+console.log(matrix);
 
+io.on('connection', function (socket) {
 
+});
 
+// var frameCount = 5;
+
+function frameRate(fc) {
+  return 1000 / fc;
+}
+
+var time = frameRate(5);
+
+function draw() {
+  for (var y = 0; y < matrix.length; y++) {
+    for (var x = 0; x < matrix[y].length; x++) {
+      if (matrix[y][x].index == 1) {
+        matrix[y][x].mul();
+      }
+      else if (matrix[y][x].index == 2) {
+        matrix[y][x].eat();
+      }
+      else if (matrix[y][x].index == 3) {
+        matrix[y][x].eat();
+      }
+      else if (matrix[y][x].index == 4) {
+        matrix[y][x].move();
+      }
+      else if (matrix[y][x].index == 5) {
+        matrix[y][x].mul();
+      }
+    }
+  }
+}
+
+//setInterval( draw, time );
