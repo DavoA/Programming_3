@@ -31,10 +31,10 @@ module.exports = class Virus {
         return found;
     }
 
-    mul() {
+    mul(matrix) {
         this.multiply++;
         this.tariq++;
-        var datarkner = this.chooseCell(0);
+        var datarkner = this.chooseCell(0,matrix);
 
         if (datarkner.length > 0 && this.multiply >= 30) {
             for (var i in datarkner) {

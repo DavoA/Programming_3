@@ -16,13 +16,13 @@ module.exports = class eatGrass {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(num) {
+    chooseCell(num,matrix) {
         this.getNewCoordinates();
-        return super.chooseCell(num);
+        return super.chooseCell(num,matrix);
     }
 
-    move() {
-        var newCell = random(this.chooseCell(0));
+    move(matrix) {
+        var newCell = random(this.chooseCell(0,matrix));
         if (this.acted == false) {
             if (newCell) {
                 var newX = newCell[0];
@@ -36,13 +36,13 @@ module.exports = class eatGrass {
             }
             this.energy--;
             if (this.energy <= 0) {
-                this.die();
+                this.die(matrix);
             }
         }
 
     }
-    eat() {
-        var newCell = random(this.chooseCell(1));
+    eat(matrix) {
+        var newCell = random(this.chooseCell(1,matrix));
         if (this.acted == false) {
             if (newCell) {
                 var newX = newCell[0];
@@ -55,11 +55,11 @@ module.exports = class eatGrass {
                 this.acted = true;
 
                 if (this.energy >= 10) {
-                    this.mul();
+                    this.mul(matrix);
                     this.energy = 4;
                 }
             } else {
-                this.move();
+                this.move(matrix);
             }
 
 
@@ -68,8 +68,8 @@ module.exports = class eatGrass {
     die() {
         matrix[this.y][this.x] = 0;
     }
-    mul() {
-        var newCell = random(this.chooseCell(0));
+    mul(matrix) {
+        var newCell = random(this.chooseCell(0,matrix));
 
         if (newCell) {
             var newX = newCell[0];

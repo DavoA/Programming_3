@@ -40,8 +40,8 @@ module.exports = class Killer {
         return found;
     }
 
-    move() {
-        var newCell = random(this.chooseCell(0));
+    move(matrix) {
+        var newCell = random(this.chooseCell(0,matrix));
         if (this.acted == false) {
             if (newCell) {
                 var newX = newCell[0];
@@ -52,13 +52,13 @@ module.exports = class Killer {
                 this.y = newY;
                 this.x = newX;
 
-                this.kill();
+                this.kill(matrix);
                 this.acted = true;
             }
         }
     }
-    kill() {
-        var xotakerner = this.chooseCell(2);
+    kill(matrix) {
+        var xotakerner = this.chooseCell(2,matrix);
 
         if (xotakerner.length > 0) {
             for (var i in xotakerner) {
@@ -67,7 +67,7 @@ module.exports = class Killer {
                 matrix[newY][newX] = 0;
             }
         }
-        var gishatichner = this.chooseCell(3);
+        var gishatichner = this.chooseCell(3,matrix);
 
         if (gishatichner.length > 0) {
             for (var i in gishatichner) {

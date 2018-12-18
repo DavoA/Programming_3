@@ -3,9 +3,9 @@ var LivingCreature = require("./class.livingcreature");
 module.exports = class Grass extends LivingCreature {
 
 
-    mul() {
+    mul(matrix) {
         this.multiply++;
-        var newCell = random(this.chooseCell(0));
+        var newCell = random(this.chooseCell(0,matrix));
 
         if (newCell && this.multiply >= 2) {
             var newX = newCell[0];

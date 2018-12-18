@@ -53,8 +53,8 @@ module.exports = class Predator {
         return found;
     }
 
-    move() {
-        var newCell = random(this.chooseCell(0));
+    move(matrix) {
+        var newCell = random(this.chooseCell(0,matrix));
         if (this.acted == false) {
             if (newCell) {
                 var newX = newCell[0];
@@ -73,8 +73,8 @@ module.exports = class Predator {
         }
 
     }
-    eat() {
-        var newCell = random(this.chooseCell(2));
+    eat(matrix) {
+        var newCell = random(this.chooseCell(2,matrix));
         if (this.acted == false) {
             if (newCell) {
                 var newX = newCell[0];
@@ -86,12 +86,12 @@ module.exports = class Predator {
                 this.energy +=3;
                 this.acted = true;
                 if (this.energy >= 68) {
-                    this.mul();
+                    this.mul(matrix);
                     this.energy = 48;
                 }
             }
             else {
-                this.move();
+                this.move(matrix);
             }
 
 
@@ -100,8 +100,8 @@ module.exports = class Predator {
     die() {
         matrix[this.y][this.x] = 0;
     }
-    mul() {
-        var newCell = random(this.chooseCell(0));
+    mul(matrix) {
+        var newCell = random(this.chooseCell(0,matrix));
 
         if (newCell) {
             var newX = newCell[0];
