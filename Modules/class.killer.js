@@ -19,7 +19,7 @@ module.exports = class Killer {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(num, num1) {
+    chooseCell(num, num1,matrix) {
         this.getNewCoordinates();
         var found = [];
         for (var i in this.directions) {
@@ -56,6 +56,7 @@ module.exports = class Killer {
                 this.acted = true;
             }
         }
+        else this.acted = false;
     }
     kill(matrix) {
         var xotakerner = this.chooseCell(2,matrix);

@@ -35,7 +35,7 @@ module.exports = class Predator {
             [this.x + 2, this.y + 2]
         ];
     }
-    chooseCell(num) {
+    chooseCell(num,matrix) {
         this.getNewCoordinates();
         var found = [];
         for (var i in this.directions) {
@@ -68,9 +68,10 @@ module.exports = class Predator {
             }
             this.energy--;
             if (this.energy <= 0) {
-                this.die();
+                this.die(matrix);
             }
         }
+        else this.acted = false;
 
     }
     eat(matrix) {
@@ -96,8 +97,9 @@ module.exports = class Predator {
 
 
         }
+        else this.acted = false;
     }
-    die() {
+    die(matrix) {
         matrix[this.y][this.x] = 0;
     }
     mul(matrix) {

@@ -3,24 +3,8 @@ var eatGrass = require("./class.eatgrass");
 var Predator = require("./class.predator");
 var Killer = require("./class.killer");
 var Virus = require("./class.virus");
-// var score = 0;
-// function createCanvas(num,ind)
-// {
-//     while(score<num){
-//         var x = Math.floor(Math.random()* matrix[0].length);
-//         var y = Math.floor(Math.random()* matrix.length);
-
-//         if(matrix[y][x] == 0)
-//         {
-//             matrix[y][x] = ind;
-//             score++;
-//         }
-//     }
-//     score = 0;
-// }
 var matrix = [];
 var n = m = 80;
-
 for (var y = 0; y < n; y++) {
     matrix[y] = [];
     for (var x = 0; x < m; x++) {

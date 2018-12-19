@@ -17,7 +17,7 @@ module.exports = class Virus {
         ];
 
     }
-    chooseCell(num) {
+    chooseCell(num,matrix) {
         var found = [];
         for (var i in this.directions) {
             var x = this.directions[i][0];
@@ -54,7 +54,7 @@ module.exports = class Virus {
         }
 
     }
-    die()
+    die(matrix)
     {
         matrix[this.y][this.x] = 0;
     }
