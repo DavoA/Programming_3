@@ -19,7 +19,7 @@ module.exports = class Killer {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(num, num1,matrix) {
+    chooseCell(num,matrix) {
         this.getNewCoordinates();
         var found = [];
         for (var i in this.directions) {
@@ -30,9 +30,6 @@ module.exports = class Killer {
                     found.push(this.directions[i]);
                 }
                 else if (matrix[y][x].index == num) {
-                    found.push(this.directions[i]);
-                }
-                else if (matrix[y][x].index == num1) {
                     found.push(this.directions[i]);
                 }
             }
@@ -78,4 +75,8 @@ module.exports = class Killer {
             }
         }
     }
+}
+function random(arr)
+{
+    return arr[Math.floor(Math.random()*arr.length)]
 }

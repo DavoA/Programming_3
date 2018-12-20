@@ -72,7 +72,7 @@ module.exports = class eatGrass {
                 this.acted = true;
 
                 if (this.energy >= 10) {
-                    this.mul();
+                    this.mul(matrix);
                     this.energy = 4;
                 }
             } else {
@@ -87,15 +87,19 @@ module.exports = class eatGrass {
         matrix[this.y][this.x] = 0;
     }
     mul(matrix) {
-        var newCell = random(this.chooseCell(0));
+        var newCell = random(this.chooseCell(0,matrix));
 
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
 
-            matrix[newY][newX] = new GrassEater(newX, newY, 2);
+            matrix[newY][newX] = new eatGrass(newX, newY, 2);
 
         }
 
     }
+}
+function random(arr)
+{
+    return arr[Math.floor(Math.random()*arr.length)]
 }

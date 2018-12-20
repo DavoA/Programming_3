@@ -109,9 +109,13 @@ module.exports = class Predator {
             var newX = newCell[0];
             var newY = newCell[1];
 
-            matrix[newY][newX] = new Gishatich(newX, newY, 3);
+            matrix[newY][newX] = new Predator(newX, newY, 3);
 
         }
 
     }
+}
+function random(arr)
+{
+    return arr[Math.floor(Math.random()*arr.length)]
 }

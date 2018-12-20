@@ -1,14 +1,14 @@
-var side = 10;
+var side = 5;
 var matrix = [];
 var socket = io();
 function setup()
 {
     frameRate(0);
+    background('#acacac');
     socket.on("getNewMatrix",function(mtx){
         matrix = mtx;
-        console.log(matrix);
-        createCanvas(matrix[0].length * side,matrix.length * length);
-        background('#acacac')
+
+        createCanvas(matrix[0].length * side, matrix.length * side);
         redraw();
         socket.on("redraw",function(mtx){
             matrix = mtx;
@@ -24,7 +24,7 @@ function draw() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             var obj = matrix[y][x];
-
+            
             if (obj.index == 1) {
                 fill("green");
                 rect(x * side, y * side, side, side);

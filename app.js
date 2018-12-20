@@ -17,6 +17,8 @@ var matrix = require("./Modules/matrix");
 console.log(matrix);
 
 io.on('connection', function (socket) {
+  socket.emit("getNewMatrix",matrix);
+  
   setInterval(function () {
     for (var y = 0; y < matrix.length; y++) {
       for (var x = 0; x < matrix[y].length; x++) {
@@ -41,7 +43,7 @@ io.on('connection', function (socket) {
   },time);
 });
 
-var frameCount = 5;
+var frameCount = 1;
 
 function frameRate(fc) {
   return 1000 / fc;

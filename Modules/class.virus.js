@@ -22,7 +22,7 @@ module.exports = class Virus {
         for (var i in this.directions) {
             var x = this.directions[i][0];
             var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+            if (x >= 0 && x < matrix && y >= 0 && y < matrix) {
                 if (matrix[y][x] == num) {
                     found.push(this.directions[i]);
                 }
@@ -35,6 +35,8 @@ module.exports = class Virus {
         this.multiply++;
         this.tariq++;
         var datarkner = this.chooseCell(0,matrix);
+
+        console.log(datarkner);
 
         if (datarkner.length > 0 && this.multiply >= 30) {
             for (var i in datarkner) {
@@ -50,7 +52,7 @@ module.exports = class Virus {
         
         if(this.tariq == 40)
         {
-            this.die();
+            this.die(matrix);
         }
 
     }
@@ -60,3 +62,4 @@ module.exports = class Virus {
     }
 
 }
+

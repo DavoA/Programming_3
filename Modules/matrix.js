@@ -4,7 +4,8 @@ var Predator = require("./class.predator");
 var Killer = require("./class.killer");
 var Virus = require("./class.virus");
 var matrix = [];
-var n = m = 80;
+var n= 80;
+var m= 80;
 for (var y = 0; y < n; y++) {
     matrix[y] = [];
     for (var x = 0; x < m; x++) {
