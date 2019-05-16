@@ -1,21 +1,20 @@
 var side = 5;
 var matrix = [];
 var socket = io();
-function setup()
-{
-    frameRate(0);
+function setup() {
+    frameRate(5);
     background('#acacac');
-    socket.on("getNewMatrix",function(mtx){
+    socket.on("getNewMatrix", function (mtx) {
         matrix = mtx;
 
         createCanvas(matrix[0].length * side, matrix.length * side);
         redraw();
-        socket.on("redraw",function(mtx){
+        socket.on("redraw", function (mtx) {
             matrix = mtx;
             redraw();
         });
     });
-    
+
     noLoop();
 }
 
@@ -24,7 +23,7 @@ function draw() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             var obj = matrix[y][x];
-            
+
             if (obj.index == 1) {
                 fill("green");
                 rect(x * side, y * side, side, side);
@@ -48,7 +47,7 @@ function draw() {
 
             }
             else if (obj.index == 5) {
-                fill("#808000");
+                fill("#000000");
                 rect(x * side, y * side, side, side);
                 //matrix[y][x].acted = false;
 
@@ -73,7 +72,7 @@ function draw() {
 //         }
 //     }
 
-     
+
 //     console.log(matrix);
 //     frameRate(5);
 //     createCanvas(matrix[0].length * side, matrix.length * side);
@@ -101,9 +100,9 @@ function draw() {
 //     console.log(matrix);
 // }
 
-            
-        
-    
 
-   
+
+
+
+
 

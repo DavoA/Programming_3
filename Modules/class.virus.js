@@ -38,7 +38,7 @@ module.exports = class Virus {
 
         console.log(datarkner);
 
-        if (datarkner.length > 0 && this.multiply >= 30) {
+        if (datarkner.length > 0 && this.multiply >= 40) {
             for (var i in datarkner) {
                 var newX = datarkner[i][0];
                 var newY = datarkner[i][1];
@@ -50,7 +50,7 @@ module.exports = class Virus {
             
         }
         
-        if(this.tariq == 40)
+        if(this.tariq == 30)
         {
             this.die(matrix);
         }

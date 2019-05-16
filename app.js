@@ -1,9 +1,8 @@
 var express = require('express');
 var app = express();
-
 var server = require('http').Server(app);
-
 var io = require('socket.io')(server);
+var fs = require('fs');
 
 app.use(express.static("./public"));
 
@@ -43,7 +42,7 @@ io.on('connection', function (socket) {
   },time);
 });
 
-var frameCount = 1;
+var frameCount = 5;
 
 function frameRate(fc) {
   return 1000 / fc;
