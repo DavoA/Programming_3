@@ -19,7 +19,7 @@ module.exports = class Killer {
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(num,matrix) {
+    chooseCell(num, matrix) {
         this.getNewCoordinates();
         var found = [];
         for (var i in this.directions) {
@@ -38,7 +38,7 @@ module.exports = class Killer {
     }
 
     move(matrix) {
-        var newCell = random(this.chooseCell(0,matrix));
+        var newCell = random(this.chooseCell(0, matrix));
         if (this.acted == false) {
             if (newCell) {
                 var newX = newCell[0];
@@ -56,7 +56,7 @@ module.exports = class Killer {
         else this.acted = false;
     }
     kill(matrix) {
-        var xotakerner = this.chooseCell(2,matrix);
+        var xotakerner = this.chooseCell(2, matrix);
 
         if (xotakerner.length > 0) {
             for (var i in xotakerner) {
@@ -65,7 +65,7 @@ module.exports = class Killer {
                 matrix[newY][newX] = 0;
             }
         }
-        var gishatichner = this.chooseCell(3,matrix);
+        var gishatichner = this.chooseCell(3, matrix);
 
         if (gishatichner.length > 0) {
             for (var i in gishatichner) {
@@ -76,7 +76,6 @@ module.exports = class Killer {
         }
     }
 }
-function random(arr)
-{
-    return arr[Math.floor(Math.random()*arr.length)]
+function random(arr) {
+    return arr[Math.floor(Math.random() * arr.length)]
 }

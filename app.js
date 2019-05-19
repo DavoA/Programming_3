@@ -16,8 +16,8 @@ var matrix = require("./Modules/matrix");
 console.log(matrix);
 
 io.on('connection', function (socket) {
-  socket.emit("getNewMatrix",matrix);
-  
+  socket.emit("getNewMatrix", matrix);
+
   setInterval(function () {
     for (var y = 0; y < matrix.length; y++) {
       for (var x = 0; x < matrix[y].length; x++) {
@@ -39,13 +39,36 @@ io.on('connection', function (socket) {
       }
     }
     socket.emit("redraw", matrix);
-  },time);
+  }, 2000);
 });
 
-var frameCount = 5;
+io.on('connection', function (socket) {
+  socket.on("Sxmvec", function (arr) {
 
-function frameRate(fc) {
-  return 1000 / fc;
+  });
+});
+Weather = "Summer";
+var WhetherInit = 0;
+function draw_Weather() {
+  WhetherInit++
+  if (WhetherInit == 5) {
+    WhetherInit = 1;
+  }
+  else if (WhetherInit == 1) {
+    Weather = "Autumn";
+  }
+  else if (WhetherInit == 2) {
+    Weather = "Winter";
+  }
+  else if (WhetherInit == 3) {
+    Weather = "Spring";
+  }
+  else if (WhetherInit == 4) {
+    Weather = "Summer";
+  }
+  io.socket.emit("exanak", Weather);
 }
 
-var time = frameRate(frameCount);
+setInterval(draw_Weather, 6000);
+
+

@@ -25,8 +25,14 @@ function draw() {
             var obj = matrix[y][x];
 
             if (obj.index == 1) {
-                fill("green");
+                if (weatherClient == "Summer") {
+                    fill("green");
+                }
+                else if (weatherClient != "Summer") {
+                    fill("#556B2F");
+                }
                 rect(x * side, y * side, side, side);
+
             }
             else if (obj.index == 2) {
                 fill("yellow");
@@ -41,7 +47,12 @@ function draw() {
 
             }
             else if (obj.index == 4) {
-                fill("#53320B");
+                if (weatherClient == "Summer") {
+                    fill("#E9967A");
+                }
+                else if (weatherClient != "Summer") {
+                    fill("#8B4513");
+                }
                 rect(x * side, y * side, side, side);
                 //matrix[y][x].acted = false;
 
@@ -59,46 +70,37 @@ function draw() {
         }
     }
 }
+function mousePressed() {
+    var x = Math.floor(mouseX / side);
+    var y = Math.floor(mouseY / side);
+    arr = [x, y];
+    console.log(arr);
+    socket.emit("Sxmvec", arr)
 
+}
 
-// var matrix = [];
-// var n = m = 80;
-// var side = 10;
-// function setup() {
-//     for (var y = 0; y < n; y++) {
-//         matrix[y] = [];
-//         for (var x = 0; x < m; x++) {
-//             matrix[y][x] = random([0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,3,3,3,4,5]);
-//         }
-//     }
-
-
-//     console.log(matrix);
-//     frameRate(5);
-//     createCanvas(matrix[0].length * side, matrix.length * side);
-//     background('#acacac');
-
-//     for (var y = 0; y < matrix.length; y++) {
-//         for (var x = 0; x < matrix[y].length; x++) {
-//             if (matrix[y][x] == 1) {
-//                 matrix[y][x] = new Grass(x, y, 1);
-//             }
-//             else if (matrix[y][x] == 2) {
-//                 matrix[y][x] = new eatGrass(x, y, 2);
-//             }
-//             else if (matrix[y][x] == 3) {
-//                 matrix[y][x] = new Predator(x, y, 3);
-//             }
-//             else if (matrix[y][x] == 4) {
-//                 matrix[y][x] = new Killer(x, y, 4);
-//             }
-//             else if (matrix[y][x] == 5) {
-//                 matrix[y][x] = new Virus(x, y, 5);
-//             }
-//         }
-//     }
-//     console.log(matrix);
-// }
+socket.on("exanak", draw_Weather);
+function drawWeather(w) {
+    var p = document.getElementById('seasons');
+    var weather = w;
+    console.log(weather);
+    if (weather == "Summer") {
+        p.innerText = "Summer";
+    }
+    else if (weather == "Winter") {
+        p.innerText = "Winter";
+    }
+    else if (weather == "Autumn") {
+        p.innerText = "Autumn";
+    }
+    else if (weather == "Spring") {
+        p.innerText = "Spring";
+    }
+}
+var weatherClient = "Summer"
+socket.on("exanak", function (w) {
+    weatherClient = w;
+});
 
 
 
