@@ -70,16 +70,9 @@ function draw() {
         }
     }
 }
-function mousePressed() {
-    var x = Math.floor(mouseX / side);
-    var y = Math.floor(mouseY / side);
-    arr = [x, y];
-    console.log(arr);
-    socket.emit("Sxmvec", arr)
 
-}
+socket.on("exanak", drawWeather);
 
-socket.on("exanak", draw_Weather);
 function drawWeather(w) {
     var p = document.getElementById('seasons');
     var weather = w;
@@ -101,6 +94,22 @@ var weatherClient = "Summer"
 socket.on("exanak", function (w) {
     weatherClient = w;
 });
+
+function mousePressed() {
+
+    var x = Math.floor(mouseX / side);
+    var y = Math.floor(mouseY / side);
+    arr = [x, y];
+    
+    console.log(arr);
+    socket.emit("Sxmvec", arr)
+
+}
+
+
+function AtomayinBomb() {
+    socket.emit("AtomayinBomb");
+}
 
 
 
